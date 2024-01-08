@@ -1,9 +1,11 @@
 import axios from 'axios';
-const baseURL = process.env.VUE_APP_BASE_URL;
+
+const instance = axios.create({
+	baseURL: process.env.VUE_APP_BASE_URL,
+});
 
 function registerUser(userData) {
-	const url = baseURL + '/signup';
-	return axios.post(url, userData);
+	return instance.post('/signup', userData);
 }
 
 export { registerUser };
