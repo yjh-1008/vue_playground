@@ -1,7 +1,11 @@
 <template>
-	<div>회원가입</div>
+	<div>
+		<SignupForm />
+	</div>
 </template>
 
-<script setup></script>
+<script setup>
+import SignupForm from '@/components/common/SignupForm.vue';
+</script>
 
 <style lang="scss" scoped></style>

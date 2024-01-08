@@ -1,12 +1,11 @@
 <template>
-	<nav>
-		<router-link to="/login">로그인</router-link> |
-		<router-link to="/singup">회원가입</router-link>
-	</nav>
+	<AppHeader />
 	<router-view />
 </template>
 
-<script setup></script>
+<script setup>
+import AppHeader from '@/components/common/AppHeader.vue';
+</script>
 
 <style>
 #app {

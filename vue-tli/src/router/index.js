@@ -1,16 +1,22 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import LoginPage from '../views/LoginPage.vue';
-import SignupPage from '../views/SignupPage.vue';
 const routes = [
 	{
+		path: '',
+		redirect: '/login',
+	},
+	{
 		path: '/login',
-		name: 'home',
-		component: LoginPage,
+		name: 'login',
+		component: () => import('../views/LoginPage.vue'),
 	},
 	{
 		path: '/signup',
-		name: 'home',
-		component: SignupPage,
+		name: 'signup',
+		component: () => import('../views/SignupPage.vue'),
+	},
+	{
+		path: '/:catchAll(.*)',
+		component: () => import('@/views/NotFoundPage'),
 	},
 ];
 
