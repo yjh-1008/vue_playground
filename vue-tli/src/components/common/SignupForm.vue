@@ -12,19 +12,23 @@
 			<label for="nickname">nickname:</label>
 			<input id="nickname" v-model="nickname" type="text" />
 		</div>
-		<button type="submit">회원가입</button>
+		<button type="submit" :disabled="!emailValid || !password.length">
+			회원가입
+		</button>
 
 		<p>{{ logMessage }}</p>
 	</form>
 </template>
 
 <script setup>
-import { ref, unref } from 'vue';
+import { ref, unref, computed } from 'vue';
 import { registerUser } from '@/api/index';
+import { validateEmail } from '@/utils/validation';
 const id = ref('');
 const password = ref('');
 const nickname = ref('');
 const logMessage = ref('');
+const emailValid = computed(() => validateEmail(id.value));
 const onSubmit = async () => {
 	const userData = {
 		username: unref(id),
