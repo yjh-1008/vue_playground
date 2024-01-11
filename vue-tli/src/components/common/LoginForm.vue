@@ -8,23 +8,23 @@
 			<label for="password"></label>
 			<input id="password" tyoe="password" v-model="password" />
 		</div>
-		<button type="submit" :disabled="!emailValid || !password.length">
-			로그인
-		</button>
+		<button type="submit">로그인</button>
 		{{ logMessage }}
 	</form>
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
-import { validateEmail } from '@/utils/validation.js';
-// import New from '@/components/New.vue';
+import { ref } from 'vue';
+// import { validateEmail } from '@/utils/validation.js';
+import { useRouter } from 'vue-router';
+import { useStore } from 'vuex';
 import { login } from '@/api/index';
 const id = ref('');
 const password = ref('');
 const logMessage = ref();
-const emailValid = computed(() => validateEmail(id.value));
-
+// const emailValid = computed(() => validateEmail(id.value));
+const router = useRouter();
+const store = useStore();
 const onSubmit = async () => {
 	try {
 		const { data } = await login({
@@ -32,8 +32,10 @@ const onSubmit = async () => {
 			password: password.value,
 		});
 		logMessage.value = `${data.user.username}님 환영합니다`;
+		store.dispatch('setId', data.user.username);
+		router.push('/main');
 	} catch (err) {
-		logMessage.value = err.response.data;
+		logMessage.value = err.response.id;
 	}
 };
 </script>
