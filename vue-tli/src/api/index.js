@@ -1,11 +1,15 @@
+// import store from '@/store';
 import axios from 'axios';
+import { setInterceptors } from './common/interceptors';
 
-const instance = axios.create({
-	baseURL: process.env.VUE_APP_BASE_URL,
-	headers: {
-		Authorization: '1',
-	},
-});
+function createInstance() {
+	const instance = axios.create({
+		baseURL: process.env.VUE_APP_BASE_URL,
+	});
+	return setInterceptors(instance);
+}
+
+const instance = createInstance();
 
 function registerUser(userData) {
 	return instance.post('/signup', userData);
@@ -15,4 +19,9 @@ function login(userData) {
 	return instance.post('/login', userData);
 }
 
-export { registerUser, login };
+// 학습 노트 데이터를 조회하는 API
+function fetchPosts() {
+	return instance.get('posts');
+}
+
+export { registerUser, login, fetchPosts };

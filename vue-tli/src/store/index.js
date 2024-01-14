@@ -3,6 +3,7 @@ import { createStore } from 'vuex';
 export default createStore({
 	state: {
 		id: '',
+		token: '',
 	},
 	getters: {
 		getId(state) {
@@ -12,7 +13,11 @@ export default createStore({
 			return state.id !== '';
 		},
 	},
-	mutations: {},
+	mutations: {
+		setToken(state, token) {
+			state.token = token;
+		},
+	},
 	actions: {
 		setId(context, val) {
 			context.state.id = val;

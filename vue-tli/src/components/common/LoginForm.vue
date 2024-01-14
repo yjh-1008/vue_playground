@@ -33,6 +33,7 @@ const onSubmit = async () => {
 		});
 		logMessage.value = `${data.user.username}님 환영합니다`;
 		store.dispatch('setId', data.user.username);
+		store.commit('setToken', data.token);
 		router.push('/main');
 	} catch (err) {
 		logMessage.value = err.response.id;
