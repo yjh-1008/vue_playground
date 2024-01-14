@@ -5,6 +5,10 @@
 		<ul v-else>
 			<PostListItem v-for="n in notes" :key="n._id" :note="n" />
 		</ul>
+		<i class="icon ion-md-heart"></i>
+		<router-link to="add">
+			<i class="ion-md-plus">+</i>
+		</router-link>
 	</div>
 </template>
 
