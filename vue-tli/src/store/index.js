@@ -5,7 +5,7 @@ import {
 	saveAuthToCookie,
 	saveUserToCookie,
 } from '@/utils/cookies';
-import { login } from '@/api/index';
+import { login } from '@/api/auth';
 export default createStore({
 	state: {
 		id: getUserFromCookie() || '',

@@ -3,7 +3,12 @@
 		<h1>Main</h1>
 		<LoadingSpinner v-if="isLoading" />
 		<ul v-else>
-			<PostListItem v-for="n in notes" :key="n._id" :note="n" />
+			<PostListItem
+				v-for="n in notes"
+				:key="n._id"
+				:note="n"
+				@refresh-evetnt="fetchNotes"
+			/>
 		</ul>
 		<i class="icon ion-md-heart"></i>
 		<router-link to="add">
@@ -13,7 +18,7 @@
 </template>
 
 <script setup>
-import { fetchPosts } from '@/api';
+import { fetchPosts } from '@/api/posts.js';
 import { ref, onMounted } from 'vue';
 import PostListItem from '@/components/posts/PostListItem.vue';
 import LoadingSpinner from '@/components/LoadingSpinner.vue';

@@ -22,7 +22,7 @@
 
 <script setup>
 import { ref, unref, computed } from 'vue';
-import { registerUser } from '@/api/index';
+import { registerUser } from '@/api/auth';
 import { validateEmail } from '@/utils/validation';
 // import { useRouter } from 'vue-router';
 const id = ref('');

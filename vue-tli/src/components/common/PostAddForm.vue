@@ -22,7 +22,8 @@
 
 <script setup>
 import { ref, computed } from 'vue';
-import { createPost } from '@/api/index';
+import router from '@/router';
+import { createPost } from '@/api/posts';
 const title = ref('');
 const contents = ref('');
 const isContentValid = computed(() => {
@@ -36,6 +37,7 @@ const onSubmit = async () => {
 		};
 		const { data } = await createPost(postData);
 		console.log(data);
+		router.push('/main');
 	} catch (err) {
 		alert(err.response.data.message);
 		title.value = '';
