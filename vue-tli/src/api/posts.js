@@ -5,12 +5,20 @@ function fetchPosts() {
 }
 
 function createPost(postData) {
-	console.log('here');
-	console.log(postData);
 	return posts.post('/', postData);
+}
+
+//학습노트 1개 조회
+function fetchPost(postId) {
+	return posts.get(postId);
 }
 
 function deletePost(id) {
 	return posts.delete(id);
 }
-export { fetchPosts, createPost, deletePost };
+
+function editPost(postId, postData) {
+	return posts.put(postId, postData);
+}
+
+export { fetchPosts, createPost, deletePost, fetchPost, editPost };

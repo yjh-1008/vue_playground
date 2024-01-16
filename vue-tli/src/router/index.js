@@ -23,6 +23,10 @@ const routes = [
 		component: () => import('@/views/MainPage.vue'),
 	},
 	{
+		path: '/post/:id',
+		component: () => import('@/views/PostPage.vue'),
+	},
+	{
 		path: '/:catchAll(.*)',
 		component: () => import('@/views/NotFoundPage'),
 	},

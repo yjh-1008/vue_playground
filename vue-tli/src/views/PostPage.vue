@@ -1,11 +1,11 @@
 <template>
 	<div>
-		<PostAddForm />
+		<PostEditForm />
 	</div>
 </template>
 
 <script setup>
-import PostAddForm from '@/components/common/PostAddForm.vue';
+import PostEditForm from '@/components/common/PostEditForm.vue';
 </script>
 
 <style lang="scss" scoped></style>
