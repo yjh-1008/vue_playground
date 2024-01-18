@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router';
+import store from '@/store';
 const routes = [
 	{
 		path: '',
@@ -7,6 +8,7 @@ const routes = [
 	{
 		path: '/add',
 		component: () => import('../views/PostAddPage.vue'),
+		meta: { auth: true },
 	},
 	{
 		path: '/login',
@@ -21,10 +23,12 @@ const routes = [
 	{
 		path: '/main',
 		component: () => import('@/views/MainPage.vue'),
+		meta: { auth: true },
 	},
 	{
 		path: '/post/:id',
 		component: () => import('@/views/PostPage.vue'),
+		meta: { auth: true },
 	},
 	{
 		path: '/:catchAll(.*)',
@@ -35,6 +39,15 @@ const routes = [
 const router = createRouter({
 	history: createWebHistory(process.env.BASE_URL),
 	routes,
+});
+
+router.beforeEach((to, from, next) => {
+	if (to.meta.auth && !store.getters.isLogin) {
+		console.log('인증이 필요합니다.');
+		next('/login');
+		return;
+	}
+	next();
 });
 
 export default router;

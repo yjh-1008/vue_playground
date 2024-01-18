@@ -31,6 +31,9 @@ export default createStore({
 		clearId(context) {
 			context.state.id = '';
 		},
+		clearToken(context) {
+			context.state.token = '';
+		},
 		async LOGIN({ commit, dispatch }, userData) {
 			const { data } = await login(userData);
 			dispatch('setId', data.user.username);
