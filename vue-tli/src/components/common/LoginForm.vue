@@ -6,21 +6,30 @@
 		</div>
 		<div>
 			<label for="password"></label>
-			<input id="password" tyoe="password" v-model="password" />
+			<input id="password" type="password" v-model="password" />
+			<span v-if="!emailValid || !password.length" class="error">error</span>
 		</div>
-		<button type="submit">로그인</button>
+		<button
+			type="submit"
+			class="btn"
+			:disabled="!emailValid || !password.length"
+			:class="!emailValid || !password.length ? 'disabled' : null"
+		>
+			로그인
+		</button>
 	</form>
 </template>
 
 <script setup>
-import { ref } from 'vue';
-
+import { ref, computed } from 'vue';
+import { validateEmail } from '@/utils/validation';
 import { useRouter } from 'vue-router';
 import { useStore } from 'vuex';
 const id = ref('');
 const password = ref('');
 const logMessage = ref();
-// const emailValid = computed(() => validateEmail(id.value));
+// eslint-disable-next-line no-unused-vars
+const emailValid = computed(() => validateEmail(id.value));
 const router = useRouter();
 const store = useStore();
 const onSubmit = async () => {
